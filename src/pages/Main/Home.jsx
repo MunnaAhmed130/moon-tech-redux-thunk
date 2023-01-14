@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import ProductCard from "../../components/ProductCard";
+import { toggleBrand } from "../../redux/actions/filterAction";
 
 const Home = () => {
     const [products, setProducts] = useState([]);
+    const dispath = useDispatch();
 
     useEffect(() => {
-        fetch("http://localhost:5000/products")
+        fetch("http://localhost:4000/all")
             .then((res) => res.json())
-            .then((data) => setProducts(data.data));
+            .then((data) => setProducts(data));
     }, []);
 
     const activeClass = "text-white  bg-indigo-500 border-white";
@@ -21,12 +24,14 @@ const Home = () => {
                     In Stock
                 </button>
                 <button
+                    onClick={() => dispath(toggleBrand("amd"))}
                     className={`border px-3 py-2 rounded-full font-semibold`}
                 >
                     AMD
                 </button>
                 <button
                     className={`border px-3 py-2 rounded-full font-semibold`}
+                    onClick={() => dispath(toggleBrand("intel"))}
                 >
                     Intel
                 </button>
