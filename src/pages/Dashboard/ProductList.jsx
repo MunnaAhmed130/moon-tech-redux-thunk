@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { removeProduct } from "../../redux/actions/productAction";
+import deleteProduct from "../../redux/thunk/products/deleteProduct";
 import loadProductData from "../../redux/thunk/products/fetchProducts";
 
 const ProductList = () => {
@@ -12,7 +14,7 @@ const ProductList = () => {
     // const [products, setProducts] = useState([]);
 
     // useEffect(() => {
-    //     fetch("http://localhost:4000/all")
+    //     fetch("http://localhost:4000/product")
     //         .then((res) => res.json())
     //         .then((data) => setProducts(data));
     // });
@@ -98,7 +100,13 @@ const ProductList = () => {
                                         </td>
                                         <td class="p-2">
                                             <div class="flex justify-center">
-                                                <button>
+                                                <button
+                                                    onClick={() =>
+                                                        dispatch(
+                                                            deleteProduct(_id)
+                                                        )
+                                                    }
+                                                >
                                                     <svg
                                                         class="w-8 h-8 hover:text-blue-600 rounded-full hover:bg-gray-100 p-1"
                                                         fill="none"
