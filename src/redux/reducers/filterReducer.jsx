@@ -1,5 +1,6 @@
 import {
     CLEAR_ALL,
+    SEARCH_KEY,
     TOGGLE_BRAND,
     TOGGLE_STOCK,
 } from "../actionTypes/actionTypes";
@@ -15,6 +16,11 @@ export const initialState = {
 
 export const filterReducer = (state = initialState, action) => {
     switch (action.type) {
+        case SEARCH_KEY:
+            return {
+                ...state,
+                keyword: action.payload,
+            };
         case CLEAR_ALL:
             return {
                 ...state,

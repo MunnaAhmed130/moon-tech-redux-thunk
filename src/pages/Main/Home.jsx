@@ -6,14 +6,20 @@ import {
     toggleBrand,
     toggleStock,
 } from "../../redux/actions/filterAction";
-import { loadProduct } from "../../redux/actions/productAction";
 import loadProductData from "../../redux/thunk/products/fetchProducts";
 
 const Home = () => {
-    // const [products, setProducts] = useState([]);
-    // products.map((product) => console.log(product));
     const filters = useSelector((state) => state.filter.filters);
+    const keyword = useSelector((state) => state.filter.keyword);
     const products = useSelector((state) => state.product.products);
+    console.log(keyword);
+    let term = "amd";
+    products.map((product) => {
+        if (product.model.toUpperCase().includes(term.toUpperCase())) {
+            // console.log(product.model, product._id);
+        }
+    });
+
     const { brands, stock, clear } = filters;
     // console.log(products);
     const dispatch = useDispatch();
@@ -56,6 +62,25 @@ const Home = () => {
             <ProductCard product={product} key={product.model} />
         ));
     }
+    if (keyword) {
+        content = products
+            .filter((product) =>
+                product.model.toUpperCase().includes(keyword.toUpperCase())
+            )
+            .map((product) => (
+                <ProductCard product={product} key={product.model} />
+            ));
+        // setPcs(content);
+    }
+    // if (pcs.length) {
+    //     content = pcs
+    //         .filter(
+    //             (product) => product.model.toUpperCase() == term.toUpperCase()
+    //         )
+    //         .map((product) => (
+    //             <ProductCard product={product} key={product.model} />
+    //         ));
+    // }
     return (
         <div className="max-w-7xl gap-14 mx-auto my-10">
             <div className="mb-10 flex justify-end gap-5">
