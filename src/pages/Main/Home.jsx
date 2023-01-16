@@ -12,18 +12,12 @@ const Home = () => {
     const filters = useSelector((state) => state.filter.filters);
     const keyword = useSelector((state) => state.filter.keyword);
     const products = useSelector((state) => state.product.products);
-    console.log(keyword);
-    let term = "amd";
-    products.map((product) => {
-        if (product.model.toUpperCase().includes(term.toUpperCase())) {
-            // console.log(product.model, product._id);
-        }
-    });
+    // console.log(keyword);
 
     const { brands, stock, clear } = filters;
-    // console.log(products);
+
     const dispatch = useDispatch();
-    console.log(brands, stock);
+    // console.log(brands, stock);
     useEffect(() => {
         dispatch(loadProductData());
     }, []);
@@ -70,17 +64,8 @@ const Home = () => {
             .map((product) => (
                 <ProductCard product={product} key={product.model} />
             ));
-        // setPcs(content);
     }
-    // if (pcs.length) {
-    //     content = pcs
-    //         .filter(
-    //             (product) => product.model.toUpperCase() == term.toUpperCase()
-    //         )
-    //         .map((product) => (
-    //             <ProductCard product={product} key={product.model} />
-    //         ));
-    // }
+
     return (
         <div className="max-w-7xl gap-14 mx-auto my-10">
             <div className="mb-10 flex justify-end gap-5">
@@ -90,7 +75,7 @@ const Home = () => {
                     ${clear ? activeClass : null}
                     `}
                 >
-                    Clear All
+                    Clear Filters
                 </button>
                 <button
                     onClick={() => dispatch(toggleStock())}
