@@ -1,6 +1,7 @@
 import {
     ADD_PRODUCT,
     ADD_TO_CART,
+    GET_PRODUCT,
     LOAD_PRODUCT,
     PRODUCT_LOADED,
     REMOVE_FROM_CART,
@@ -22,6 +23,13 @@ const productReducer = (state = initialState, action) => {
             return {
                 ...state,
                 products: action.payload,
+            };
+        case GET_PRODUCT:
+            return {
+                ...state,
+                products: state.products.filter(
+                    (product) => product._id === action.payload
+                ),
             };
         case ADD_PRODUCT:
             return {

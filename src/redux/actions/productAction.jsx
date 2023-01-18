@@ -1,6 +1,7 @@
 import {
     ADD_PRODUCT,
     ADD_TO_CART,
+    GET_PRODUCT,
     LOAD_PRODUCT,
     PRODUCT_LOADED,
     REMOVE_FROM_CART,
@@ -11,6 +12,13 @@ export const addProduct = (product) => {
     return {
         type: ADD_PRODUCT,
         payload: product,
+    };
+};
+
+export const getProduct = (id) => {
+    return {
+        type: GET_PRODUCT,
+        payload: id,
     };
 };
 

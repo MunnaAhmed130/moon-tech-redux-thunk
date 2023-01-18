@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeProduct } from "../../redux/actions/productAction";
 import deleteProduct from "../../redux/thunk/products/deleteProduct";
 import loadProductData from "../../redux/thunk/products/fetchProducts";
+import { BiEditAlt } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 const ProductList = () => {
     const products = useSelector((state) => state.product.products);
@@ -122,6 +124,16 @@ const ProductList = () => {
                                                         ></path>
                                                     </svg>
                                                 </button>
+                                                <Link
+                                                    to={`edit-product/${_id}`}
+                                                >
+                                                    <BiEditAlt
+                                                        className="w-8 h-8 hover:text-blue-600 rounded-full hover:bg-gray-100 p-1 ml-2"
+                                                        onClick={() =>
+                                                            console.log(_id)
+                                                        }
+                                                    />
+                                                </Link>
                                             </div>
                                         </td>
                                     </tr>
